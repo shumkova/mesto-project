@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mesto Russia</title>
+  <link rel="stylesheet" href="pages/index.css">
+</head>
+<body class="page">
+  <header class="header">
+    <div class="header__logo"></div>
+  </header>
+
+  <main class="content container">
+    <section class="profile">
+      <img src="images/avatar.jpg" alt="Фото профиля" class="profile__avatar">
+      <div class="profile__info">
+        <h1 class="profile__name">Жак-Ив Кусто</h1>
+        <p class="profile__status">Исследователь океана</p>
+        <button class="profile__edit button"></button>
+      </div>
+      <button class="button profile__add-button"></button>
+    </section>
+
+    <section class="cards">
+      <ul class="cards__list">
+        <li class="card">
+          <div class="card__image-container">
+            <img src="images/card-karachaevsk.jpg" alt="Руины храма" class="card__image">
+          </div>
+          <div class="card__caption">
+            <h2 class="card__title">Карачаевск</h2>
+            <button class="button card__like-button"></button>
+          </div>
+        </li>
+
+        <li class="card">
+          <div class="card__image-container">
+            <img src="images/card-elbrus.jpg" alt="Вершина горы Эльбрус вдалеке на закате" class="card__image">
+          </div>
+          <div class="card__caption">
+            <h2 class="card__title">Гора Эльбрус</h2>
+            <button class="button card__like-button card__like-button_active"></button>
+          </div>
+        </li>
+
+        <li class="card">
+          <div class="card__image-container">
+            <img src="images/card-dombai.jpg" alt="Снежные вершины и осенний лес" class="card__image">
+          </div>
+          <div class="card__caption">
+            <h2 class="card__title">Домбай</h2>
+            <button class="button card__like-button"></button>
+          </div>
+        </li>
+
+        <li class="card">
+          <div class="card__image-container">
+            <img src="images/card-elbrus.jpg" alt="Вершина горы Эльбрус вдалеке на закате" class="card__image">
+          </div>
+          <div class="card__caption">
+            <h2 class="card__title">Гора Эльбрус</h2>
+            <button class="button card__like-button"></button>
+          </div>
+        </li>
+
+        <li class="card">
+          <div class="card__image-container">
+            <img src="images/card-dombai.jpg" alt="Снежные вершины и осенний лес" class="card__image">
+          </div>
+          <div class="card__caption">
+            <h2 class="card__title">Домбай</h2>
+            <button class="button card__like-button"></button>
+          </div>
+        </li>
+
+        <li class="card">
+          <div class="card__image-container">
+            <img src="images/card-karachaevsk.jpg" alt="Руины храма" class="card__image">
+          </div>
+          <div class="card__caption">
+            <h2 class="card__title">Карачаево-Черкессия</h2>
+            <button class="button card__like-button"></button>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <div class="popup">
+      <div class="popup__container">
+        <button class="button popup__close"></button>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form action="#" method="post" class="form popup__form">
+          <input type="text" class="form__input" placeholder="Жак-Ив Кусто" name="name">
+          <input type="text" class="form__input" value="Исследователь океана" name="status">
+          <button class="button form__submit" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="footer container">
+    <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
+  </footer>
+
+</body>
+</html>
