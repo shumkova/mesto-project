@@ -23,7 +23,6 @@
 @import '../blocks/cards/__list/cards__list.css';
 
 @import '../blocks/card/card.css';
-@import '../blocks/card/__image-container/card__image-container.css';
 @import '../blocks/card/__image/card__image.css';
 @import '../blocks/card/__caption/card__caption.css';
 @import '../blocks/card/__title/card__title.css';

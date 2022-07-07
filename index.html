@@ -19,70 +19,58 @@
       <div class="profile__info">
         <h1 class="profile__name">Жак-Ив Кусто</h1>
         <p class="profile__status">Исследователь океана</p>
-        <button class="profile__edit button"></button>
+        <button class="profile__edit button" type="button" aria-label="Редактировать профиль"></button>
       </div>
-      <button class="button profile__add-button"></button>
+      <button class="button profile__add-button" type="button" aria-label="Добавить запись"></button>
     </section>
 
     <section class="cards">
       <ul class="cards__list">
         <li class="card">
-          <div class="card__image-container">
-            <img src="images/card-karachaevsk.jpg" alt="Руины храма" class="card__image">
-          </div>
+          <img src="images/card-karachaevsk.jpg" alt="Руины храма" class="card__image">
           <div class="card__caption">
             <h2 class="card__title">Карачаевск</h2>
-            <button class="button card__like-button"></button>
+            <button class="button card__like-button" type="button" aria-label="Нравится"></button>
           </div>
         </li>
 
         <li class="card">
-          <div class="card__image-container">
-            <img src="images/card-elbrus.jpg" alt="Вершина горы Эльбрус вдалеке на закате" class="card__image">
-          </div>
+          <img src="images/card-elbrus.jpg" alt="Вершина горы Эльбрус вдалеке на закате" class="card__image">
           <div class="card__caption">
             <h2 class="card__title">Гора Эльбрус</h2>
-            <button class="button card__like-button card__like-button_active"></button>
+            <button class="button card__like-button card__like-button_active" type="button" aria-label="Убрать отметку нравится"></button>
           </div>
         </li>
 
         <li class="card">
-          <div class="card__image-container">
-            <img src="images/card-dombai.jpg" alt="Снежные вершины и осенний лес" class="card__image">
-          </div>
+          <img src="images/card-dombai.jpg" alt="Снежные вершины и осенний лес" class="card__image">
           <div class="card__caption">
             <h2 class="card__title">Домбай</h2>
-            <button class="button card__like-button"></button>
+            <button class="button card__like-button"  type="button" aria-label="Нравится"></button>
           </div>
         </li>
 
         <li class="card">
-          <div class="card__image-container">
-            <img src="images/card-elbrus.jpg" alt="Вершина горы Эльбрус вдалеке на закате" class="card__image">
-          </div>
+          <img src="images/card-elbrus.jpg" alt="Вершина горы Эльбрус вдалеке на закате" class="card__image">
           <div class="card__caption">
             <h2 class="card__title">Гора Эльбрус</h2>
-            <button class="button card__like-button"></button>
+            <button class="button card__like-button"  type="button" aria-label="Нравится"></button>
           </div>
         </li>
 
         <li class="card">
-          <div class="card__image-container">
-            <img src="images/card-dombai.jpg" alt="Снежные вершины и осенний лес" class="card__image">
-          </div>
+          <img src="images/card-dombai.jpg" alt="Снежные вершины и осенний лес" class="card__image">
           <div class="card__caption">
             <h2 class="card__title">Домбай</h2>
-            <button class="button card__like-button"></button>
+            <button class="button card__like-button" type="button" aria-label="Нравится"></button>
           </div>
         </li>
 
         <li class="card">
-          <div class="card__image-container">
-            <img src="images/card-karachaevsk.jpg" alt="Руины храма" class="card__image">
-          </div>
+          <img src="images/card-karachaevsk.jpg" alt="Руины храма" class="card__image">
           <div class="card__caption">
             <h2 class="card__title">Карачаево-Черкессия</h2>
-            <button class="button card__like-button"></button>
+            <button class="button card__like-button"  type="button" aria-label="Нравится"></button>
           </div>
         </li>
       </ul>
@@ -90,7 +78,7 @@
 
     <div class="popup">
       <div class="popup__container">
-        <button class="button popup__close"></button>
+        <button class="button popup__close" type="button" aria-label="Закрыть попап"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
         <form action="#" method="post" class="form popup__form">
           <input type="text" class="form__input" placeholder="Жак-Ив Кусто" name="name">
