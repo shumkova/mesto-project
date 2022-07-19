@@ -10,6 +10,8 @@
   background-size: 32px 32px;
 
   border: none;
+
+  transition: opacity 0.3s ease-in-out;
 }
 
 @media screen and (max-width: 767px) {

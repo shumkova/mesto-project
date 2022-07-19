@@ -9,6 +9,8 @@
 
   background-image: url(../../../images/plus.svg);
   background-size: 22px 22px;
+
+  transition: opacity 0.3s ease-in-out;
 }
 
 @media screen and (max-width: 767px) {

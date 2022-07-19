@@ -25,58 +25,9 @@
     </section>
 
     <section class="cards">
-      <ul class="cards__list">
-        <li class="card">
-          <img src="images/card-karachaevsk.jpg" alt="Руины храма" class="card__image">
-          <div class="card__caption">
-            <h2 class="card__title">Карачаевск</h2>
-            <button class="button card__like-button" type="button" aria-label="Нравится"></button>
-          </div>
-        </li>
-
-        <li class="card">
-          <img src="images/card-elbrus.jpg" alt="Вершина горы Эльбрус вдалеке на закате" class="card__image">
-          <div class="card__caption">
-            <h2 class="card__title">Гора Эльбрус</h2>
-            <button class="button card__like-button card__like-button_active" type="button" aria-label="Убрать отметку нравится"></button>
-          </div>
-        </li>
-
-        <li class="card">
-          <img src="images/card-dombai.jpg" alt="Снежные вершины и осенний лес" class="card__image">
-          <div class="card__caption">
-            <h2 class="card__title">Домбай</h2>
-            <button class="button card__like-button"  type="button" aria-label="Нравится"></button>
-          </div>
-        </li>
-
-        <li class="card">
-          <img src="images/card-elbrus.jpg" alt="Вершина горы Эльбрус вдалеке на закате" class="card__image">
-          <div class="card__caption">
-            <h2 class="card__title">Гора Эльбрус</h2>
-            <button class="button card__like-button"  type="button" aria-label="Нравится"></button>
-          </div>
-        </li>
-
-        <li class="card">
-          <img src="images/card-dombai.jpg" alt="Снежные вершины и осенний лес" class="card__image">
-          <div class="card__caption">
-            <h2 class="card__title">Домбай</h2>
-            <button class="button card__like-button" type="button" aria-label="Нравится"></button>
-          </div>
-        </li>
-
-        <li class="card">
-          <img src="images/card-karachaevsk.jpg" alt="Руины храма" class="card__image">
-          <div class="card__caption">
-            <h2 class="card__title">Карачаево-Черкессия</h2>
-            <button class="button card__like-button"  type="button" aria-label="Нравится"></button>
-          </div>
-        </li>
-      </ul>
     </section>
 
-    <div class="popup">
+    <div class="popup popup_edit-profile">
       <div class="popup__container">
         <button class="button popup__close" type="button" aria-label="Закрыть попап"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
@@ -88,11 +39,36 @@
       </div>
     </div>
 
+    <div class="popup popup_add-card">
+      <div class="popup__container">
+        <button class="button popup__close" type="button" aria-label="Закрыть попап"></button>
+        <h2 class="popup__title">Новое место</h2>
+        <form action="#" method="post" class="form popup__form">
+          <input type="text" class="form__input" placeholder="Название" name="card-name" required>
+          <input type="text" class="form__input" placeholder="Ссылка на картинку" name="card-img-link" required>
+          <button class="button form__submit" type="submit">Создать</button>
+        </form>
+      </div>
+    </div>
+
   </main>
 
   <footer class="footer container">
     <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
   </footer>
 
+  <template id="card">
+    <li class="card">
+      <div class="card__image-container"> <!--Это не лишняя обёртка. Див нужен для задания правильного соотношения сторон изображения, и чтобы вёрстка не ломалась, если картинка не загрузится-->
+        <img src="images/card-karachaevsk.jpg" alt="Руины храма" class="card__image">
+      </div>
+      <div class="card__caption">
+        <h2 class="card__title">Карачаевск</h2>
+        <button class="button card__like-button" type="button" aria-label="Нравится"></button>
+      </div>
+      <button class="card__delete button" type="button" aria-label="Удалить"></button>
+    </li>
+  </template>
+  <script src="script/script.js"></script>
 </body>
 </html>
