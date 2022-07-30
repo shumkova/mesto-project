@@ -19,16 +19,16 @@
       <div class="profile__info">
         <h1 class="profile__name">Жак-Ив Кусто</h1>
         <p class="profile__status">Исследователь океана</p>
-        <button class="profile__edit button" type="button" aria-label="Редактировать профиль"></button>
+        <button class="profile__edit button" type="button" aria-label="Редактировать профиль" data-open-popup="edit-profile"></button>
       </div>
-      <button class="button profile__add-button" type="button" aria-label="Добавить запись"></button>
+      <button class="button profile__add-button" type="button" aria-label="Добавить запись" data-open-popup="add-card"></button>
     </section>
 
     <section class="cards">
       <ul class="cards__list"></ul>
     </section>
 
-    <div class="popup popup_edit-profile">
+    <div class="popup popup_state_preload popup_type_edit-profile" data-popup="edit-profile">
       <div class="popup__container">
         <button class="button popup__close" type="button" aria-label="Закрыть попап"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
@@ -40,7 +40,7 @@
       </div>
     </div>
 
-    <div class="popup popup_add-card">
+    <div class="popup popup_state_preload popup_type_add-card" data-popup="add-card">
       <div class="popup__container">
         <button class="button popup__close" type="button" aria-label="Закрыть попап"></button>
         <h2 class="popup__title">Новое место</h2>
@@ -52,6 +52,16 @@
       </div>
     </div>
 
+    <div class="popup popup_state_preload popup_type_image" data-popup="image">
+      <div class="popup__image-container">
+        <button class="button popup__close" type="button" aria-label="Закрыть попап"></button>
+        <figure class="popup__figure">
+          <img src="" alt="" class="popup__image">
+          <figcaption class="popup__caption"></figcaption>
+        </figure>
+      </div>
+    </div>
+
   </main>
 
   <footer class="footer container">
@@ -59,7 +69,7 @@
   </footer>
 
   <template id="card">
-    <li class="card">
+    <li class="card" tabindex="0" data-open-popup="image">
       <div class="card__image-container"> <!--Это не лишняя обёртка. Див нужен для задания правильного соотношения сторон изображения, и чтобы вёрстка не ломалась, если картинка не загрузится-->
         <img src="images/card-karachaevsk.jpg" alt="Руины храма" class="card__image">
       </div>
@@ -69,17 +79,6 @@
       </div>
       <button class="card__delete button" type="button" aria-label="Удалить"></button>
     </li>
-  </template>
-  <template id="card-image-popup">
-    <div class="popup popup_type_card-image">
-      <div class="popup__container">
-        <button class="button popup__close" type="button" aria-label="Закрыть попап"></button>
-        <figure class="popup__figure">
-          <img src="" alt="" class="popup__image">
-          <figcaption class="popup__caption"></figcaption>
-        </figure>
-      </div>
-    </div>
   </template>
   <script src="script/script.js"></script>
 </body>

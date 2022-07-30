@@ -5,7 +5,7 @@
   bottom: 0;
   left: 0;
 
-  display: none;
+  display: flex;
 
   opacity: 0;
   visibility: hidden;
@@ -15,6 +15,7 @@
 
   padding: 50px 19px;
   background-color: rgba(0, 0, 0, 0.5);
+  overflow: auto;
 
   transition: visibility 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
