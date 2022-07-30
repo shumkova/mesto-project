@@ -38,6 +38,12 @@
 @import '../blocks/popup/__container/popup__container.css';
 @import '../blocks/popup/__title/popup__title.css';
 @import '../blocks/popup/__form/popup__form.css';
+@import '../blocks/popup/__figure/popup__figure.css';
+@import '../blocks/popup/__image/popup__image.css';
+@import '../blocks/popup/__caption/popup__caption.css';
+@import '../blocks/popup/_type/popup_type_card-image.css';
+
+
 
 @import '../blocks/form/form.css';
 @import '../blocks/form/__input/form__input.css';

@@ -1,33 +1,45 @@
 const initialCards = [
   {
     name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
+    alt: 'Зелёные, слегка заснеженные горы'
   },
   {
     name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
+    alt: 'Не замёрзшая зимой речка'
   },
   {
     name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
+    alt: 'Мрачные панельки в сумерках'
   },
   {
     name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
+    alt: 'Заснеженная вершина'
   },
   {
     name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
+    alt: 'Железнодорожный путь посреди зелёного леса'
   },
   {
     name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
+    alt: 'Замёрзший берег Байкала, скалистый край заснеженного острова'
   }
 ];
 
+// Создание модальных окон для просмотра картинок
+
+function createImagePopup (cardInfo) {
+
+}
+
 // Рендер карточек
 
-const cardsContainer = document.querySelector('.cards');
+const cardsContainer = document.querySelector('.cards__list');
 const cardTemplate = document.querySelector('#card').content;
 
 function createCard (cardInfo) {
@@ -51,28 +63,21 @@ function createCard (cardInfo) {
   return card;
 }
 
-function createAndFillCardsList (cardsData) {
-  let cardsList = document.createElement('ul');
-  cardsList.classList.add('cards__list');
+function renderInitialCards (cardsData) {
+  let frag = document.createDocumentFragment();
 
   cardsData.forEach( (item) => {
-    cardsList.append(createCard(item));
+    frag.append(createCard(item));
   });
 
-  cardsContainer.append(cardsList);
+  cardsContainer.append(frag);
 }
 
 function addCard (cardInfo) {
-  let cardsList = document.querySelector('.cards__list');
-
-  if (cardsList) {
-    cardsList.prepend(createCard(cardInfo));
-  } else {
-    createAndFillCardsList([cardInfo]);
-  }
+  cardsContainer.prepend(createCard(cardInfo));
 }
 
-createAndFillCardsList(initialCards);
+renderInitialCards(initialCards);
 
 
 

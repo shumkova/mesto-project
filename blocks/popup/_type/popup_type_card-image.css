@@ -1,0 +1,25 @@
+.popup_type_card-image {
+  opacity: 1;
+  visibility: visible;
+}
+
+.popup_type_card-image .popup__container {
+  padding: 0;
+  width: 100%;
+  max-width: 64vw;
+  min-height: auto;
+  max-height: 75vh;
+  background-color: transparent;
+}
+
+@media screen and (max-width: 767px) {
+  .popup_type_card-image .popup__container {
+    max-width: none;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .popup_type_card-image .popup__container {
+    max-width: 80vw;
+  }
+}
