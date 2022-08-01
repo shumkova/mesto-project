@@ -107,7 +107,9 @@ const onEditFormSubmit = (evt) => {
   closePopup(editPopup);
 }
 
-editForm.addEventListener('submit', onEditFormSubmit);
+const initEditFormSubmit = () => {
+  editForm.addEventListener('submit', onEditFormSubmit);
+}
 
 const onEditPopupOpen = () => {
   nameInput.value = profileName.textContent;
@@ -258,10 +260,13 @@ const initPopups = () => {
 }
 
 
-
+// =====================
+// При загрузке страницы
+// =====================
 
 window.addEventListener('load', () => {
   renderInitialCards(initialCards);
   initPopups();
+  initEditFormSubmit();
   initAddCardFormSubmit();
 })
