@@ -264,7 +264,7 @@ const initPopups = () => {
 // При загрузке страницы
 // =====================
 
-window.addEventListener('load', () => {
+window.addEventListener('DOMContentLoaded', () => {
   renderInitialCards(initialCards);
   initPopups();
   initEditFormSubmit();
