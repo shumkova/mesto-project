@@ -40,24 +40,30 @@ const initialCards = [
 const cardsContainer = document.querySelector('.cards__list');
 const cardTemplate = document.querySelector('#card').content;
 
+const toggleLikes = (evt) => {
+  evt.target.classList.toggle('card__like-button_active');
+  evt.stopPropagation();
+}
+
+const deleteCard = (evt) => {
+  evt.target.closest('.card').remove();
+  evt.stopPropagation();
+}
+
+
 const createCard = (cardInfo) => {
   const card = cardTemplate.cloneNode(true);
   const cardImage = card.querySelector('.card__image');
   const cardTitle = card.querySelector('.card__title');
   const likeBtn = card.querySelector('.card__like-button');
-  const deleteBtn = card.querySelector('.card__delete');
+  const deleteBtn = card.querySelector('.card__delete-button');
 
   cardImage.src = cardInfo.link;
   cardImage.alt = cardInfo.alt;
   cardTitle.textContent = cardInfo.name;
 
-  likeBtn.addEventListener('click', function (evt) {
-    evt.target.classList.toggle('card__like-button_active');
-  });
-
-  deleteBtn.addEventListener('click', function (evt) {
-    evt.target.closest('.card').remove();
-  })
+  likeBtn.addEventListener('click', toggleLikes);
+  deleteBtn.addEventListener('click', deleteCard)
 
   return card;
 }
@@ -148,7 +154,9 @@ const fillImagePopup = (src, alt, caption) => {
 }
 
 const onImagePopupOpen = (evt) => {
-  const card = evt.target.closest('.card');
+  let target = evt.target;
+
+  const card = target.closest('.card');
 
   if (card) {
     let cardImage = card.querySelector('.card__image');
@@ -177,11 +185,11 @@ const onImagePopupClose = () => {
 const POPUP_OPENED_CLASS = 'popup_state_opened';
 
 const openPopup = (evt, popup, openCallback) => {
-  popup.classList.add(POPUP_OPENED_CLASS);
-
   if (openCallback) {
     openCallback(evt);
   }
+
+  popup.classList.add(POPUP_OPENED_CLASS);
 }
 
 const closePopup = (popup, closeCallback) => {
@@ -201,7 +209,6 @@ const onEscPress = (evt, popup, closeCallback) => {
 const setupPopup = (popupId, popup, btn, openCallback, closeCallback) => {
   btn.addEventListener('click', (evt) => {
     evt.preventDefault();
-
     openPopup(evt, popup, openCallback);
   })
 
