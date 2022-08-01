@@ -69,7 +69,7 @@ const createCard = (cardInfo) => {
 }
 
 const renderInitialCards = (cardsData) => {
-  let cardsFrag = document.createDocumentFragment();
+  const cardsFrag = document.createDocumentFragment();
 
   cardsData.forEach((item) => {
     cardsFrag.append(createCard(item));
@@ -156,13 +156,13 @@ const fillImagePopup = (src, alt, caption) => {
 }
 
 const onImagePopupOpen = (evt) => {
-  let target = evt.target;
+  const target = evt.target;
 
   const card = target.closest('.card');
 
   if (card) {
-    let cardImage = card.querySelector('.card__image');
-    let cardCaption = card.querySelector('.card__caption');
+    const cardImage = card.querySelector('.card__image');
+    const cardCaption = card.querySelector('.card__caption');
 
     fillImagePopup(cardImage.src, cardImage.alt, cardCaption.textContent);
   }
@@ -215,7 +215,7 @@ const setupPopup = (popupId, popup, btn, openCallback, closeCallback) => {
   })
 
   popup.addEventListener('click', (evt) => {
-    let target = evt.target;
+    const target = evt.target;
     if (target.classList.contains('popup__close') || target.classList.contains('popup')) {
       closePopup(popup, closeCallback);
     }
