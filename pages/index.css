@@ -41,7 +41,7 @@
 @import '../blocks/popup/__image-container/popup__image-container.css';
 @import '../blocks/popup/__figure/popup__figure.css';
 @import '../blocks/popup/__image/popup__image.css';
-@import '../blocks/popup/__caption/popup__caption.css';
+@import '../blocks/popup/__img-caption/popup__img-caption.css';
 @import '../blocks/popup/_type/popup_type_image.css';
 
 
