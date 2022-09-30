@@ -1,0 +1,64 @@
+@import '../vendor/normalize.css';
+@import '../vendor/fonts.css';
+
+@import '../blocks/page/page.css';
+
+@import '../blocks/container/container.css';
+@import '../blocks/button/button.css';
+
+@import '../blocks/header/header.css';
+@import '../blocks/header/__logo/header__logo.css';
+
+@import '../blocks/content/content.css';
+
+@import '../blocks/profile/profile.css';
+@import '../blocks/profile/__avatar/profile__avatar.css';
+@import '../blocks/profile/__info/profile__info.css';
+@import '../blocks/profile/__name/profile__name.css';
+@import '../blocks/profile/__edit/profile__edit.css';
+@import '../blocks/profile/__status/profile__status.css';
+@import '../blocks/profile/__add-button/profile__add-button.css';
+
+@import '../blocks/cards/cards.css';
+@import '../blocks/cards/__list/cards__list.css';
+
+@import '../blocks/card/card.css';
+@import '../blocks/card/__image-container/card__image-container.css';
+@import '../blocks/card/__image/card__image.css';
+@import '../blocks/card/__caption/card__caption.css';
+@import '../blocks/card/__title/card__title.css';
+@import '../blocks/card/__like-button/card__like-button.css';
+@import '../blocks/card/__like-button/_active/card__like-button_active.css';
+@import '../blocks/card/__delete-button/card__delete-button.css';
+
+@import '../blocks/modal/modal.css';
+@import '../blocks/modal/_state/modal_state_opened.css';
+@import '../blocks/modal/_state/modal_state_preload.css';
+@import '../blocks/modal/__close/modal__close.css';
+@import '../blocks/modal/__container/modal__container.css';
+@import '../blocks/modal/__title/modal__title.css';
+@import '../blocks/modal/__form/modal__form.css';
+@import '../blocks/modal/__image-container/modal__image-container.css';
+@import '../blocks/modal/__figure/modal__figure.css';
+@import '../blocks/modal/__image/modal__image.css';
+@import '../blocks/modal/__img-caption/modal__img-caption.css';
+@import '../blocks/modal/_type/modal_type_image.css';
+
+
+
+@import '../blocks/form/form.css';
+@import '../blocks/form/__field/form__field.css';
+@import '../blocks/form/__input/form__input.css';
+@import '../blocks/form/__input/_type/form__input_type_error.css';
+@import '../blocks/form/__error/form__error.css';
+@import '../blocks/form/__error/_active/form__error_active.css';
+@import '../blocks/form/__submit/form__submit.css';
+@import '../blocks/form/__submit/_disabled/form__submit_disabled.css';
+
+@import '../blocks/footer/footer.css';
+@import '../blocks/footer/__copyright/footer__copyright.css';
+
+
+
+
+

@@ -1,0 +1,38 @@
+.form__submit {
+  margin-top: 48px;
+
+  box-sizing: border-box;
+  height: 50px;
+
+  color: #fff;
+  font-size: 18px;
+  line-height: 1.21;
+
+  background-color: #000;
+  border: 1px solid #000;
+  border-radius: 2px;
+
+  transition: opacity 0.3s ease-in-out, background 0.3s ease-in-out;
+}
+
+.form__submit:hover,
+.form__submit:focus {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.form__submit:disabled {
+  color: #000;
+  background-color: transparent;
+  opacity: 0.2;
+  cursor: auto;
+}
+
+
+@media screen and (max-width: 767px) {
+  .form__submit {
+    margin-top: 45px;
+    height: 46px;
+    font-size: 14px;
+  }
+}

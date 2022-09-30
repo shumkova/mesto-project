@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mesto Russia</title>
+</head>
+<body class="page">
+  <header class="header">
+    <div class="header__logo"></div>
+  </header>
+
+  <main class="content container">
+    <section class="profile">
+      <img src="<%=require('./images/avatar.jpg')%>" alt="Фото профиля" class="profile__avatar">
+      <div class="profile__info">
+        <h1 class="profile__name">Жак-Ив Кусто</h1>
+        <p class="profile__status">Исследователь океана</p>
+        <button class="profile__edit button" type="button" aria-label="Редактировать профиль" data-open-modal="edit-profile"></button>
+      </div>
+      <button class="button profile__add-button" type="button" aria-label="Добавить запись" data-open-modal="add-card"></button>
+    </section>
+
+    <section class="cards">
+      <ul class="cards__list"></ul>
+    </section>
+
+    <div class="modal modal_state_preload modal_type_edit-profile" data-modal="edit-profile">
+      <div class="modal__container">
+        <button class="button modal__close" type="button" aria-label="Закрыть попап"></button>
+        <h2 class="modal__title">Редактировать профиль</h2>
+        <form action="#" method="post" class="form modal__form">
+          <label class="form__field">
+            <input id="name-input" type="text" class="form__input" placeholder="Имя" name="name" required minlength="2" maxlength="40" pattern="^[A-Za-zА-Яа-я\s-]+$" data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы">
+            <span class="form__error name-input-error"></span>
+          </label>
+          <label class="form__field">
+            <input id="about-input" type="text" class="form__input" placeholder="О себе" name="about" required minlength="2" maxlength="200" pattern="^[A-Za-zА-Яа-я\s-]+$" data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы">
+            <span class="form__error about-input-error"></span>
+          </label>
+          <button class="button form__submit" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal modal_state_preload modal_type_add-card" data-modal="add-card">
+      <div class="modal__container">
+        <button class="button modal__close" type="button" aria-label="Закрыть попап"></button>
+        <h2 class="modal__title">Новое место</h2>
+        <form action="#" method="post" class="form modal__form">
+          <label class="form__field">
+            <input id="card-name-input" type="text" class="form__input" placeholder="Название" name="card-name" required minlength="2" maxlength="30" pattern="^[A-Za-zА-Яа-я\s-]+$" data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы">
+            <span class="form__error card-name-input-error"></span>
+          </label>
+          <label class="form__field">
+            <input id="card-img-link-input" type="text" class="form__input" placeholder="Ссылка на изображение" name="card-img-link" required pattern="/^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/" data-error-message="Проверьте правильность ссылки на изображение">
+            <span class="form__error card-img-link-input-error"></span>
+          </label>
+          <button class="button form__submit" type="submit">Создать</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal modal_state_preload modal_type_image" data-modal="image">
+      <div class="modal__image-container">
+        <button class="button modal__close" type="button" aria-label="Закрыть попап"></button>
+        <figure class="modal__figure">
+          <img src="" alt="" class="modal__image">
+          <figcaption class="modal__img-caption"></figcaption>
+        </figure>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="footer container">
+    <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
+  </footer>
+
+  <template id="card">
+    <li class="card" tabindex="0">
+      <div class="card__image-container"> <!--Это не лишняя обёртка. Див нужен для задания правильного соотношения сторон изображения, и чтобы вёрстка не ломалась, если картинка не загрузится-->
+        <img src="<%=require('./images/card-karachaevsk.jpg')%>" alt="Руины храма" class="card__image">
+      </div>
+      <div class="card__caption">
+        <h2 class="card__title">Карачаевск</h2>
+        <button class="button card__like-button" type="button" aria-label="Нравится"></button>
+      </div>
+      <button class="card__delete-button button" type="button" aria-label="Удалить"></button>
+    </li>
+  </template>
+</body>
+</html>

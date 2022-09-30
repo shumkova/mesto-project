@@ -1,0 +1,22 @@
+.form__input {
+  width: 100%;
+  padding: 8px 0;
+
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+
+  font-size: 14px;
+  line-height: 1.21;
+
+  transition: border-bottom-color 0.3s ease-in-out;
+}
+
+.form__input::placeholder {
+  font-size: 14px;
+  line-height: 1.21;
+}
+
+.form__input:not(:last-of-type) {
+  margin-bottom: 23px;
+}
