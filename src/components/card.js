@@ -1,4 +1,5 @@
 import {openModal, closeModal} from "./modal";
+import {clearValidation} from "./validate";
 
 // ===============
 // Рендер карточек
@@ -93,6 +94,7 @@ const enableAddingCard = () => {
 
   buttonOpenAddCardModal.addEventListener('click', (evt) => {
     evt.preventDefault();
+    clearValidation(formAddCard);
     openModal(modalAddCard);
   })
 }

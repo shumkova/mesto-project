@@ -3,9 +3,11 @@ import {clearValidation} from "./validate";
 const MODAL_OPENED_CLASS = 'modal_state_opened';
 
 const onEscPress = (evt) => {
-  const openedModal = document.querySelector(`.${MODAL_OPENED_CLASS}`);
-  if (evt.key === 'Escape' && openedModal) {
-    closeModal(openedModal);
+  if (evt.key === 'Escape') {
+    const openedModal = document.querySelector(`.${MODAL_OPENED_CLASS}`);
+    if (openedModal) {
+      closeModal(openedModal);
+    }
   }
 }
 
@@ -20,19 +22,13 @@ const onOverlayClick = (evt) => {
 const openModal = (modal) => {
   modal.classList.add(MODAL_OPENED_CLASS);
   document.addEventListener('keydown', onEscPress);
-  modal.addEventListener('click', onOverlayClick);
+  modal.addEventListener('mousedown', onOverlayClick);
 }
 
 const closeModal = (modal) => {
   modal.classList.remove(MODAL_OPENED_CLASS);
   document.removeEventListener('keydown', onEscPress);
-  modal.removeEventListener('click', onOverlayClick);
-
-  const modalForm = modal.querySelector('.form');
-  console.log(modalForm);
-  if (modalForm) {
-    clearValidation(modalForm);
-  }
+  modal.removeEventListener('mousedown', onOverlayClick);
 }
 
 const preventBlinkingModals = () => {
