@@ -1,9 +1,9 @@
-import './pages/index.css';
-import {initialCards} from "./components/initial-cards";
-import {preventBlinkingModals} from "./components/modal";
-import {enableAddingCard, renderInitialCards} from "./components/card";
-import {enableValidation} from "./components/validate";
-import {enableProfileEditing} from "./components/profile";
+import '../pages/index.css';
+import {initialCards} from "./initial-cards";
+import {preventBlinkingModals} from "./modal";
+import {enableAddingCard, renderInitialCards} from "./card";
+import {enableValidation} from "./validate";
+import {enableProfileEditing} from "./profile";
 
 preventBlinkingModals();
 renderInitialCards(initialCards);

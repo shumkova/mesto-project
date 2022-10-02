@@ -61,16 +61,31 @@ const setInputEventListeners = (formEl) => {
   })
 }
 
+const validateForm = (formEl) => {
+  formEl.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+  })
+  setInputEventListeners(formEl);
+}
+
 const enableValidation = (elementsObj) => {
   formElements = elementsObj;
   const formList = Array.from(document.querySelectorAll(formElements.formSelector));
 
   formList.forEach((formEl) => {
-    formEl.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-    })
-    setInputEventListeners(formEl);
+    validateForm(formEl);
   })
 }
 
-export {enableValidation};
+const clearValidation = (formEl) => {
+  const inputList = Array.from(formEl.querySelectorAll(formElements.inputSelector));
+  const buttonEl = formEl.querySelector(formElements.submitButtonSelector);
+
+  inputList.forEach((inputEl) => {
+    hideInputError(formEl, inputEl);
+  })
+
+  buttonEl.classList.remove(formElements.inactiveButtonClass);
+}
+
+export {enableValidation, clearValidation, validateForm};

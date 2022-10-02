@@ -1,5 +1,5 @@
 .form__submit {
-  margin-top: 48px;
+  margin-top: 18px;
 
   box-sizing: border-box;
   height: 50px;
@@ -28,10 +28,8 @@
   cursor: auto;
 }
 
-
 @media screen and (max-width: 767px) {
   .form__submit {
-    margin-top: 45px;
     height: 46px;
     font-size: 14px;
   }

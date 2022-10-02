@@ -1,3 +1,5 @@
+import {clearValidation} from "./validate";
+
 const MODAL_OPENED_CLASS = 'modal_state_opened';
 
 const onEscPress = (evt) => {
@@ -25,6 +27,12 @@ const closeModal = (modal) => {
   modal.classList.remove(MODAL_OPENED_CLASS);
   document.removeEventListener('keydown', onEscPress);
   modal.removeEventListener('click', onOverlayClick);
+
+  const modalForm = modal.querySelector('.form');
+  console.log(modalForm);
+  if (modalForm) {
+    clearValidation(modalForm);
+  }
 }
 
 const preventBlinkingModals = () => {
