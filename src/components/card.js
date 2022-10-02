@@ -24,7 +24,7 @@ const createCard = (cardInfo) => {
   const deleteBtn = card.querySelector('.card__delete-button');
 
   cardImage.src = cardInfo.link;
-  cardImage.alt = cardInfo.alt;
+  cardImage.alt = cardInfo.name;
   cardTitle.textContent = cardInfo.name;
 
   likeBtn.addEventListener('click', toggleLikes);

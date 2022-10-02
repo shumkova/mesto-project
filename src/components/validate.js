@@ -88,4 +88,4 @@ const clearValidation = (formEl) => {
   buttonEl.classList.remove(formElements.inactiveButtonClass);
 }
 
-export {enableValidation, clearValidation, validateForm};
+export {enableValidation, clearValidation, validateForm, hasInvalidInput};

@@ -1,12 +1,14 @@
 import '../pages/index.css';
-import {initialCards} from "./initial-cards";
 import {preventBlinkingModals} from "./modal";
-import {enableAddingCard, renderInitialCards} from "./card";
+import {enableAddingCard} from "./card";
 import {enableValidation} from "./validate";
 import {enableProfileEditing} from "./profile";
 
+import {getCards, getUser} from "./api";
+
 preventBlinkingModals();
-renderInitialCards(initialCards);
+getUser();
+getCards();
 enableProfileEditing();
 enableAddingCard();
 enableValidation({
@@ -17,3 +19,5 @@ enableValidation({
   inputErrorClass: 'form__input_type_error',
   errorActiveClass: 'form__error_active'
 });
+
+

@@ -29,7 +29,6 @@ const closeModal = (modal) => {
   modal.removeEventListener('click', onOverlayClick);
 
   const modalForm = modal.querySelector('.form');
-  console.log(modalForm);
   if (modalForm) {
     clearValidation(modalForm);
   }

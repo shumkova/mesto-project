@@ -1,29 +1,35 @@
 import {openModal, closeModal} from "./modal";
+import {hasInvalidInput} from "./validate";
+import {updateProfile} from "./api";
 
 // ======================
 // Редактирование профиля
 // ======================
 
+const profileAvatar = document.querySelector('.profile__avatar');
 const profileName = document.querySelector('.profile__name');
-const profileStatus = document.querySelector('.profile__status');
+const profileAbout = document.querySelector('.profile__about');
 const modalEditProfile = document.querySelector('[data-modal="edit-profile"]');
 const formEditProfile = modalEditProfile.querySelector('.form');
 const nameInput = modalEditProfile.querySelector('input[name="name"]');
-const statusInput = modalEditProfile.querySelector('input[name="about"]');
+const aboutInput = modalEditProfile.querySelector('input[name="about"]');
 const buttonEditModal = document.querySelector('[data-open-modal="edit-profile"]');
+
+const fillUserProfile = (data) => {
+  profileAvatar.src = data.avatar;
+  profileName.textContent = data.name;
+  profileAbout.textContent = data.about;
+}
 
 const onEditFormSubmit = (evt) => {
   evt.preventDefault();
-
-  profileName.textContent = nameInput.value;
-  profileStatus.textContent = statusInput.value;
-
+  updateProfile(formEditProfile.elements.name, formEditProfile.elements.about);
   closeModal(modalEditProfile);
 }
 
 const fillEditModalInputs = () => {
   nameInput.value = profileName.textContent;
-  statusInput.value = profileStatus.textContent;
+  aboutInput.value = profileAbout.textContent;
 }
 
 const enableProfileEditing = () => {
@@ -36,6 +42,6 @@ const enableProfileEditing = () => {
   })
 }
 
-export {enableProfileEditing};
+export {enableProfileEditing, fillUserProfile};
 
 
