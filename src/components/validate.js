@@ -41,11 +41,7 @@ const hasInvalidInput = (inputList) => {
 }
 
 const toggleSubmitButtonState = (inputList, buttonEl) => {
-  if (hasInvalidInput(inputList)) {
-    buttonEl.classList.add(formElements.inactiveButtonClass);
-  } else {
-    buttonEl.classList.remove(formElements.inactiveButtonClass);
-  }
+  buttonEl.disabled = !!hasInvalidInput(inputList);
 }
 
 const setInputEventListeners = (formEl) => {
@@ -85,7 +81,7 @@ const clearValidation = (formEl) => {
     hideInputError(formEl, inputEl);
   })
 
-  buttonEl.classList.remove(formElements.inactiveButtonClass);
+  toggleSubmitButtonState(inputList, buttonEl);
 }
 
 export {enableValidation, clearValidation, validateForm};

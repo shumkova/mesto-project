@@ -53,7 +53,6 @@
 @import '../blocks/form/__error/form__error.css';
 @import '../blocks/form/__error/_active/form__error_active.css';
 @import '../blocks/form/__submit/form__submit.css';
-@import '../blocks/form/__submit/_disabled/form__submit_disabled.css';
 
 @import '../blocks/footer/footer.css';
 @import '../blocks/footer/__copyright/footer__copyright.css';

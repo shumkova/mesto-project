@@ -1,4 +1,5 @@
 import {openModal, closeModal} from "./modal";
+import {clearValidation} from "./validate";
 
 // ======================
 // Редактирование профиля
@@ -32,6 +33,7 @@ const enableProfileEditing = () => {
   buttonEditModal.addEventListener('click', (evt) => {
     evt.preventDefault();
     fillEditModalInputs();
+    clearValidation(formEditProfile);
     openModal(modalEditProfile);
   })
 }
