@@ -67,9 +67,19 @@
       <div class="modal__image-container">
         <button class="button modal__close" type="button" aria-label="Закрыть попап"></button>
         <figure class="modal__figure">
-          <img src="" alt="" class="modal__image">
+          <img src="#" alt="#" class="modal__image">
           <figcaption class="modal__img-caption"></figcaption>
         </figure>
+      </div>
+    </div>
+
+    <div class="modal modal_state_preload modal_type_delete" data-modal="delete">
+      <div class="modal__container">
+        <button class="button modal__close" type="button" aria-label="Закрыть попап"></button>
+        <form action="#" method="post" class="form modal__form">
+          <p class="modal__title">Вы уверены?</p>
+          <button class="button form__submit" type="submit">Да</button>
+        </form>
       </div>
     </div>
 
@@ -86,9 +96,12 @@
       </div>
       <div class="card__caption">
         <h2 class="card__title">Карачаевск</h2>
-        <button class="button card__like-button" type="button" aria-label="Нравится"></button>
+        <div class="card__likes">
+          <button class="button card__like-button" type="button" aria-label="Нравится"></button>
+          <span class="card__likes-counter">0</span>
+        </div>
       </div>
-      <button class="card__delete-button button" type="button" aria-label="Удалить"></button>
+      <button class="card__delete-button button" type="button" aria-label="Удалить" data-open-modal="delete"></button>
     </li>
   </template>
 </body>

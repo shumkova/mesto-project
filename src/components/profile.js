@@ -1,5 +1,5 @@
 import {openModal, closeModal} from "./modal";
-import {hasInvalidInput} from "./validate";
+import {clearValidation} from "./validate";
 import {updateProfile} from "./api";
 
 // ======================
@@ -11,9 +11,10 @@ const profileName = document.querySelector('.profile__name');
 const profileAbout = document.querySelector('.profile__about');
 const modalEditProfile = document.querySelector('[data-modal="edit-profile"]');
 const formEditProfile = modalEditProfile.querySelector('.form');
-const nameInput = modalEditProfile.querySelector('input[name="name"]');
-const aboutInput = modalEditProfile.querySelector('input[name="about"]');
+const nameInput = formEditProfile.querySelector('input[name="name"]');
+const aboutInput = formEditProfile.querySelector('input[name="about"]');
 const buttonEditModal = document.querySelector('[data-open-modal="edit-profile"]');
+const buttonSubmitEditing = formEditProfile.querySelector('.form__submit');
 
 const fillUserProfile = (data) => {
   profileAvatar.src = data.avatar;
@@ -23,8 +24,25 @@ const fillUserProfile = (data) => {
 
 const onEditFormSubmit = (evt) => {
   evt.preventDefault();
-  updateProfile(formEditProfile.elements.name, formEditProfile.elements.about);
-  closeModal(modalEditProfile);
+  buttonSubmitEditing.disabled = true;
+
+  updateProfile(formEditProfile.elements.name, formEditProfile.elements.about)
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Не удалось обновить данные пользователя: ${res.status}`);
+    })
+    .then((result) => {
+      fillUserProfile(result);
+      closeModal(modalEditProfile);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      buttonSubmitEditing.disabled = false;
+    });
 }
 
 const fillEditModalInputs = () => {
@@ -38,6 +56,7 @@ const enableProfileEditing = () => {
   buttonEditModal.addEventListener('click', (evt) => {
     evt.preventDefault();
     fillEditModalInputs();
+    clearValidation(formEditProfile);
     openModal(modalEditProfile);
   })
 }

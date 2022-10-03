@@ -27,7 +27,9 @@
 @import '../blocks/card/__image/card__image.css';
 @import '../blocks/card/__caption/card__caption.css';
 @import '../blocks/card/__title/card__title.css';
+@import '../blocks/card/__likes/card__likes.css';
 @import '../blocks/card/__like-button/card__like-button.css';
+@import '../blocks/card/__likes-counter/card__likes-counter.css';
 @import '../blocks/card/__like-button/_active/card__like-button_active.css';
 @import '../blocks/card/__delete-button/card__delete-button.css';
 
@@ -43,8 +45,7 @@
 @import '../blocks/modal/__image/modal__image.css';
 @import '../blocks/modal/__img-caption/modal__img-caption.css';
 @import '../blocks/modal/_type/modal_type_image.css';
-
-
+@import '../blocks/modal/_type/modal_type_delete.css';
 
 @import '../blocks/form/form.css';
 @import '../blocks/form/__field/form__field.css';
@@ -53,7 +54,6 @@
 @import '../blocks/form/__error/form__error.css';
 @import '../blocks/form/__error/_active/form__error_active.css';
 @import '../blocks/form/__submit/form__submit.css';
-@import '../blocks/form/__submit/_disabled/form__submit_disabled.css';
 
 @import '../blocks/footer/footer.css';
 @import '../blocks/footer/__copyright/footer__copyright.css';
