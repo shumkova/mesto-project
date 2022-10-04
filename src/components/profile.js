@@ -1,6 +1,6 @@
 import {openModal, closeModal} from "./modal";
 import {clearValidation} from "./validate";
-import {updateAvatar, updateProfile} from "./api";
+import {getUser, updateAvatar, updateProfile} from "./api";
 
 // ======================
 // Редактирование профиля и аватара
@@ -23,10 +23,23 @@ const formEditAvatar = modalEditAvatar.querySelector('.form');
 const avatarInput = formEditAvatar.querySelector('input[name="avatar-img-link"]');
 const buttonSubmitAvatarEditing = formEditAvatar.querySelector('.form__submit');
 
+let userId;
+
 const fillUserProfile = (data) => {
   profileAvatar.src = data.avatar;
   profileName.textContent = data.name;
   profileAbout.textContent = data.about;
+}
+
+const renderProfile = () => {
+  getUser()
+    .then((res) => {
+      fillUserProfile(res);
+      userId = res['_id'];
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
 
 const fillEditModalInputs = () => {
@@ -104,6 +117,4 @@ const enableProfileEditing = () => {
   })
 }
 
-export {enableProfileEditing, fillUserProfile};
-
-
+export {renderProfile, enableProfileEditing, fillUserProfile, userId};

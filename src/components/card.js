@@ -1,5 +1,6 @@
 import {openModal, closeModal} from "./modal";
-import {deleteCard, likeOrDislike, postCard, userId} from "./api";
+import {deleteCard, getCards, likeOrDislike, postCard} from "./api";
+import {userId} from "./profile";
 
 // ===============
 // Рендер карточек
@@ -9,9 +10,15 @@ const LIKE_BTN_ACTIVE_CLASS = 'card__like-button_active';
 const cardsContainer = document.querySelector('.cards__list');
 const cardTemplate = document.querySelector('#card').content;
 const imageModal = document.querySelector('[data-modal="image"]');
+
 const modalDelete = document.querySelector('[data-modal="delete"]');
 const formDelete = modalDelete.querySelector('.form');
 const buttonConfirmDeletion = formDelete.querySelector('.form__submit');
+
+const cardToDelete = {
+  id: '',
+  element: ''
+};
 
 const createCard = (cardInfo) => {
   const card = cardTemplate.cloneNode(true);
@@ -57,21 +64,9 @@ const createCard = (cardInfo) => {
   if (userId === cardInfo.owner['_id']) {
     deleteBtn.addEventListener('click', (evt) => {
       evt.preventDefault();
-      deleteBtn.disabled = true;
-      const cardEL = evt.target.closest('.card');
-
-      deleteCard(cardInfo['_id'])
-        .then((res) => {
-          if (res.ok) {
-            cardEL.remove();
-          } else {
-            return Promise.reject(`Не удалось удалить карточку: ${res.status}`);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-          deleteBtn.disabled = false;
-        })
+      cardToDelete.element = evt.target.closest('.card');
+      cardToDelete.id = cardInfo['_id'];
+      openModal(modalDelete);
     });
   } else {
     deleteBtn.remove();
@@ -85,18 +80,45 @@ const createCard = (cardInfo) => {
   return card;
 }
 
-const renderInitialCards = (cardsData) => {
-  const cardsFrag = document.createDocumentFragment();
+const renderInitialCards = () => {
+  getCards()
+    .then((res) => {
+      const cardsFrag = document.createDocumentFragment();
 
-  cardsData.forEach((item) => {
-    cardsFrag.append(createCard(item));
-  });
+      res.forEach((item) => {
+        cardsFrag.append(createCard(item));
+      });
 
-  cardsContainer.append(cardsFrag);
+      cardsContainer.append(cardsFrag);
+    })
 }
 
 const addCard = (cardInfo) => {
   cardsContainer.prepend(createCard(cardInfo));
+}
+
+const onDeleteSubmit = (evt) => {
+  evt.preventDefault();
+  buttonConfirmDeletion.disabled = true;
+  const buttonText = buttonConfirmDeletion.textContent;
+  buttonConfirmDeletion.textContent = buttonConfirmDeletion.dataset.loadingText;
+
+  deleteCard(cardToDelete.id)
+    .then((res) => {
+      if (res.ok) {
+        cardToDelete.element.remove();
+        closeModal(modalDelete);
+      } else {
+        return Promise.reject(`Не удалось удалить карточку: ${res.status}`);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      buttonConfirmDeletion.disabled = false;
+      buttonConfirmDeletion.textContent = buttonText;
+    });
 }
 
 // ==============================================
@@ -147,13 +169,15 @@ const onCardFormSubmit = (evt) => {
     });
 }
 
-const enableAddingCard = () => {
+const enableCardActions = () => {
   formAddCard.addEventListener('submit', onCardFormSubmit);
 
   buttonOpenAddCardModal.addEventListener('click', (evt) => {
     evt.preventDefault();
     openModal(modalAddCard);
   })
+
+  modalDelete.addEventListener('submit', onDeleteSubmit);
 }
 
-export {renderInitialCards, enableAddingCard};
+export {renderInitialCards, enableCardActions};
