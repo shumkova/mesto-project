@@ -1,6 +1,5 @@
 import {openModal, closeModal} from "./modal";
-import {clearValidation} from "./validate";
-import {deleteCard, likeOrDislike, postCard, removeLike, userId} from "./api";
+import {deleteCard, likeOrDislike, postCard, userId} from "./api";
 
 // ===============
 // Рендер карточек
@@ -127,6 +126,8 @@ const buttonSubmitEditing = formAddCard.querySelector('.form__submit');
 const onCardFormSubmit = (evt) => {
   evt.preventDefault();
   buttonSubmitEditing.disabled = true;
+  const buttonText = buttonSubmitEditing.textContent;
+  buttonSubmitEditing.textContent = buttonSubmitEditing.dataset.loadingText;
 
   postCard(inputCardName, inputCardImageLink)
     .then((res) => {
@@ -136,15 +137,13 @@ const onCardFormSubmit = (evt) => {
       return Promise.reject(`Не удалось опубликовать пост:  ${res.status}`);
     })
     .then((res) => {
-      addCard({
-        name: res.name,
-        link: res.link
-      });
+      addCard(res);
       formAddCard.reset();
       closeModal(modalAddCard);
     })
     .finally(() => {
       buttonSubmitEditing.disabled = false;
+      buttonSubmitEditing.textContent = buttonText;
     });
 }
 
@@ -153,7 +152,6 @@ const enableAddingCard = () => {
 
   buttonOpenAddCardModal.addEventListener('click', (evt) => {
     evt.preventDefault();
-    clearValidation(formAddCard);
     openModal(modalAddCard);
   })
 }

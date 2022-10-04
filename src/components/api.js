@@ -1,15 +1,17 @@
 import {renderInitialCards} from "./card";
 import {fillUserProfile} from "./profile";
 
-const URL = 'https://mesto.nomoreparties.co/v1';
-const token = '0a6f2833-af50-47bd-9ef3-217391db1563';
-const id = 'plus-cohort-15';
+const config = {
+  baseUrl: 'https://mesto.nomoreparties.co/v1/plus-cohort-15',
+  token: '0a6f2833-af50-47bd-9ef3-217391db1563',
+}
+
 let userId;
 
 const getUser = () => {
-  fetch(`${URL}/${id}/users/me`, {
+  fetch(`${config.baseUrl}/users/me`, {
     headers: {
-      authorization: token
+      authorization: config.token
     }
   })
     .then((res) => {
@@ -30,9 +32,9 @@ const getUser = () => {
 }
 
 const getCards = () => {
-  fetch(`${URL}/${id}/cards`, {
+  fetch(`${config.baseUrl}/cards`, {
     headers: {
-      authorization: token
+      authorization: config.token
     }
   })
     .then((res) => {
@@ -46,61 +48,64 @@ const getCards = () => {
     })
 }
 
-const updateProfile = (name, about) => {
-  return fetch(`${URL}/${id}/users/me`, {
+const updateProfile = (nameInput, aboutInput) => {
+  return fetch(`${config.baseUrl}/users/me`, {
     method: 'PATCH',
     headers: {
-      authorization: token,
+      authorization: config.token,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      name: name.value,
-      about: about.value
+      name: nameInput.value,
+      about: aboutInput.value
     })
   })
 }
 
-const postCard = (name, url) => {
-  return fetch(`${URL}/${id}/cards`, {
+const postCard = (nameInput, urlInput) => {
+  return fetch(`${config.baseUrl}/cards`, {
     method: 'POST',
     headers: {
-      authorization: token,
+      authorization: config.token,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      name: name.value,
-      link: url.value
+      name: nameInput.value,
+      link: urlInput.value
     })
   })
 }
 
 const deleteCard = (cardId) => {
-  return fetch(`${URL}/${id}/cards/${cardId}`, {
+  return fetch(`${config.baseUrl}/cards/${cardId}`, {
     method: 'DELETE',
     headers: {
-      authorization: token,
+      authorization: config.token,
     }
   })
 }
 
 const likeOrDislike = (method, cardId) => {
-  return fetch(`${URL}/${id}/cards/likes/${cardId}`, {
+  return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
     method: method,
     headers: {
-      authorization: token,
+      authorization: config.token,
     }
   })
 }
 
-const removeLike = (cardId) => {
-  return fetch(`${URL}/${id}/cards/likes/${cardId}`, {
-    method: 'DELETE',
+const updateAvatar = (urlInput) => {
+  return fetch(`${config.baseUrl}/users/me/avatar`, {
+    method: 'PATCH',
     headers: {
-      authorization: token,
-    }
+      authorization: config.token,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(({
+      avatar: urlInput.value
+    }))
   })
 }
 
-
-export {getUser, getCards, updateProfile, postCard, userId, deleteCard, removeLike, likeOrDislike};
+export {userId, getUser, getCards, updateProfile, postCard, deleteCard, likeOrDislike, updateAvatar};
 

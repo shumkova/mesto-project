@@ -13,6 +13,8 @@
 
 @import '../blocks/profile/profile.css';
 @import '../blocks/profile/__avatar/profile__avatar.css';
+@import '../blocks/profile/__avatar-image/profile__avatar-image.css';
+@import '../blocks/profile/__avatar-edit/profile__avatar-edit.css';
 @import '../blocks/profile/__info/profile__info.css';
 @import '../blocks/profile/__name/profile__name.css';
 @import '../blocks/profile/__edit/profile__edit.css';

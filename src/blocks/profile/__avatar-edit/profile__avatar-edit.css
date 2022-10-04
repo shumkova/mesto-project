@@ -1,0 +1,21 @@
+.profile__avatar-edit {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  opacity: 0;
+  visibility: hidden;
+
+  background-image: url(../../../images/pen.svg);
+  background-size: 26px 26px;
+  background-color: rgba(0, 0, 0, .8);
+  background-position: center;
+  background-repeat: no-repeat;
+
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.3s, visibility 0.3s;
+}

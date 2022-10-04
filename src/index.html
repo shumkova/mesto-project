@@ -14,13 +14,16 @@
 
   <main class="content container">
     <section class="profile">
-      <img src="#" alt="Фото профиля" class="profile__avatar">
+      <div class="profile__avatar">
+        <img src="#" alt="Фото профиля" class="profile__avatar-image">
+        <button type="button" class="profile__avatar-edit" aria-label="Изменить фотографию профиля" data-open-modal="edit-avatar"></button>
+      </div>
       <div class="profile__info">
         <h1 class="profile__name"></h1>
         <p class="profile__about"></p>
         <button class="profile__edit button" type="button" aria-label="Редактировать профиль" data-open-modal="edit-profile"></button>
       </div>
-      <button class="button profile__add-button" type="button" aria-label="Добавить запись" data-open-modal="add-card"></button>
+      <button class="button profile__add-button button" type="button" aria-label="Добавить запись" data-open-modal="add-card"></button>
     </section>
 
     <section class="cards">
@@ -40,7 +43,7 @@
             <input id="about-input" type="text" class="form__input" placeholder="О себе" name="about" required minlength="2" maxlength="200" pattern="^[A-Za-zА-Яа-яЁё\s\-]+$" data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы.">
             <span class="form__error about-input-error"></span>
           </label>
-          <button class="button form__submit" type="submit">Сохранить</button>
+          <button class="button form__submit" type="submit" data-loading-text="Сохранение...">Сохранить</button>
         </form>
       </div>
     </div>
@@ -58,7 +61,7 @@
             <input id="card-img-link-input" type="url" class="form__input" placeholder="Ссылка на изображение" name="card-img-link" required pattern="^(?:(?:https?|HTTPS?|ftp|FTP):\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-zA-Z\u00a1-\uffff0-9]-*)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]-*)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))\.?)(?::\d{2,})?(?:[/?#]\S*)?$" data-error-message="Введите адрес сайта.">
             <span class="form__error card-img-link-input-error"></span>
           </label>
-          <button class="button form__submit" type="submit">Создать</button>
+          <button class="button form__submit" type="submit" data-loading-text="Создание...">Создать</button>
         </form>
       </div>
     </div>
@@ -70,6 +73,20 @@
           <img src="#" alt="#" class="modal__image">
           <figcaption class="modal__img-caption"></figcaption>
         </figure>
+      </div>
+    </div>
+
+    <div class="modal modal_state_preload modal_type_edit-avatar" data-modal="edit-avatar">
+      <div class="modal__container">
+        <button class="button modal__close" type="button" aria-label="Закрыть попап"></button>
+        <h2 class="modal__title">Обновить аватар</h2>
+        <form action="#" method="post" class="form modal__form">
+          <label class="form__field">
+            <input id="avatar-img-link-input" type="url" class="form__input" placeholder="Ссылка на изображение" name="avatar-img-link" required pattern="^(?:(?:https?|HTTPS?|ftp|FTP):\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-zA-Z\u00a1-\uffff0-9]-*)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]-*)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))\.?)(?::\d{2,})?(?:[/?#]\S*)?$" data-error-message="Введите адрес сайта.">
+            <span class="form__error avatar-img-link-input-error"></span>
+          </label>
+          <button class="button form__submit" type="submit" data-loading-text="Сохранение...">Сохранить</button>
+        </form>
       </div>
     </div>
 
