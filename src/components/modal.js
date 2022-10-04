@@ -1,5 +1,3 @@
-import {clearValidation} from "./validate";
-
 const MODAL_OPENED_CLASS = 'modal_state_opened';
 
 const onEscPress = (evt) => {

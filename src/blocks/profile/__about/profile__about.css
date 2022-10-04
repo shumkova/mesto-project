@@ -1,4 +1,4 @@
-.profile__status {
+.profile__about {
   margin-top: 7px;
   margin-bottom: 0;
 
@@ -14,7 +14,7 @@
 }
 
 @media screen and (max-width: 767px) {
-  .profile__status {
+  .profile__about {
     font-size: 14px;
     text-align: center;
   }

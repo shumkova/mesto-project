@@ -1,0 +1,7 @@
+.modal_type_delete .modal__container {
+  min-height: auto;
+}
+
+.modal_type_delete .modal__title {
+  margin-bottom: 20px;
+}
