@@ -1,24 +1,27 @@
-import {openModal, closeModal} from "./modal";
-import {deleteCard, getCards, likeOrDislike, postCard} from "./api";
-import {userId} from "./profile";
-
-// ===============
-// Рендер карточек
-// ===============
+import {openModal} from "./modal";
+import {likeOrDislike} from "./api";
+import {fillImageModal} from "./index";
+import {userId} from "./index";
 
 const LIKE_BTN_ACTIVE_CLASS = 'card__like-button_active';
-const cardsContainer = document.querySelector('.cards__list');
 const cardTemplate = document.querySelector('#card').content;
 const imageModal = document.querySelector('[data-modal="image"]');
-
-const modalDelete = document.querySelector('[data-modal="delete"]');
-const formDelete = modalDelete.querySelector('.form');
-const buttonConfirmDeletion = formDelete.querySelector('.form__submit');
+const modalConfirmDelete = document.querySelector('[data-modal="delete-card"]');
 
 const cardToDelete = {
   id: '',
   element: ''
 };
+
+const displayLikes = (likeBtnEl, likesCounterEl, likesArr) => {
+  if (likesArr.some((item) => item['_id'] === userId)) {
+    likeBtnEl.classList.add(LIKE_BTN_ACTIVE_CLASS);
+  } else {
+    likeBtnEl.classList.remove(LIKE_BTN_ACTIVE_CLASS);
+  }
+
+  likesCounterEl.textContent = likesArr.length;
+}
 
 const createCard = (cardInfo) => {
   const card = cardTemplate.cloneNode(true);
@@ -31,11 +34,8 @@ const createCard = (cardInfo) => {
   cardImage.src = cardInfo.link;
   cardImage.alt = cardInfo.name;
   cardTitle.textContent = cardInfo.name;
-  likesCounter.textContent = cardInfo.likes.length;
 
-  if (cardInfo.likes.some((item) => item['_id'] === userId)) {
-    likeBtn.classList.add(LIKE_BTN_ACTIVE_CLASS);
-  }
+  displayLikes(likeBtn, likesCounter, cardInfo.likes);
 
   likeBtn.addEventListener('click', (evt) => {
     evt.preventDefault();
@@ -44,14 +44,7 @@ const createCard = (cardInfo) => {
 
     likeOrDislike(method, cardInfo['_id'])
       .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Произошла ошибка: ${res.status}`);
-      })
-      .then((res) => {
-        likeBtn.classList.toggle(LIKE_BTN_ACTIVE_CLASS);
-        likesCounter.textContent = res.likes.length;
+        displayLikes(likeBtn, likesCounter, res.likes);
       })
       .catch((err) => {
         console.log(err);
@@ -66,7 +59,7 @@ const createCard = (cardInfo) => {
       evt.preventDefault();
       cardToDelete.element = evt.target.closest('.card');
       cardToDelete.id = cardInfo['_id'];
-      openModal(modalDelete);
+      openModal(modalConfirmDelete);
     });
   } else {
     deleteBtn.remove();
@@ -80,104 +73,4 @@ const createCard = (cardInfo) => {
   return card;
 }
 
-const renderInitialCards = () => {
-  getCards()
-    .then((res) => {
-      const cardsFrag = document.createDocumentFragment();
-
-      res.forEach((item) => {
-        cardsFrag.append(createCard(item));
-      });
-
-      cardsContainer.append(cardsFrag);
-    })
-}
-
-const addCard = (cardInfo) => {
-  cardsContainer.prepend(createCard(cardInfo));
-}
-
-const onDeleteSubmit = (evt) => {
-  evt.preventDefault();
-  buttonConfirmDeletion.disabled = true;
-  const buttonText = buttonConfirmDeletion.textContent;
-  buttonConfirmDeletion.textContent = buttonConfirmDeletion.dataset.loadingText;
-
-  deleteCard(cardToDelete.id)
-    .then((res) => {
-      if (res.ok) {
-        cardToDelete.element.remove();
-        closeModal(modalDelete);
-      } else {
-        return Promise.reject(`Не удалось удалить карточку: ${res.status}`);
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-    .finally(() => {
-      buttonConfirmDeletion.disabled = false;
-      buttonConfirmDeletion.textContent = buttonText;
-    });
-}
-
-// ==============================================
-// Заполнение модалки с картинкой
-// ==============================================
-
-const modalImage = imageModal.querySelector('.modal__image');
-const modalImgCaption = imageModal.querySelector('.modal__img-caption');
-
-const fillImageModal = (src, alt, caption) => {
-  modalImage.src = src;
-  modalImage.alt = alt;
-  modalImgCaption.textContent = caption;
-}
-
-// ===========================
-// Добавление карточки
-// ===========================
-
-const modalAddCard = document.querySelector('[data-modal="add-card"]');
-const formAddCard = modalAddCard.querySelector('.form');
-const inputCardName = formAddCard.querySelector('input[name="card-name"]');
-const inputCardImageLink = formAddCard.querySelector('input[name="card-img-link"]');
-const buttonOpenAddCardModal = document.querySelector('[data-open-modal="add-card"]');
-const buttonSubmitEditing = formAddCard.querySelector('.form__submit');
-
-const onCardFormSubmit = (evt) => {
-  evt.preventDefault();
-  buttonSubmitEditing.disabled = true;
-  const buttonText = buttonSubmitEditing.textContent;
-  buttonSubmitEditing.textContent = buttonSubmitEditing.dataset.loadingText;
-
-  postCard(inputCardName, inputCardImageLink)
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Не удалось опубликовать пост:  ${res.status}`);
-    })
-    .then((res) => {
-      addCard(res);
-      formAddCard.reset();
-      closeModal(modalAddCard);
-    })
-    .finally(() => {
-      buttonSubmitEditing.disabled = false;
-      buttonSubmitEditing.textContent = buttonText;
-    });
-}
-
-const enableCardActions = () => {
-  formAddCard.addEventListener('submit', onCardFormSubmit);
-
-  buttonOpenAddCardModal.addEventListener('click', (evt) => {
-    evt.preventDefault();
-    openModal(modalAddCard);
-  })
-
-  modalDelete.addEventListener('submit', onDeleteSubmit);
-}
-
-export {renderInitialCards, enableCardActions};
+export {createCard, cardToDelete};

@@ -81,7 +81,7 @@ const clearValidation = (formEl) => {
     hideInputError(formEl, inputEl);
   })
 
-  toggleSubmitButtonState(inputList, buttonEl);
+  toggleSubmitButtonState(buttonEl);
 }
 
 export {enableValidation, clearValidation, validateForm};
