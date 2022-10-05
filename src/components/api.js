@@ -3,33 +3,28 @@ const config = {
   token: '0a6f2833-af50-47bd-9ef3-217391db1563',
 }
 
-const getUser = () => {
-  return fetch(`${config.baseUrl}/users/me`, {
-    headers: {
-      authorization: config.token
-    }
-  })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Не удалось загрузить данные пользователя: ${res.status}`);
-    })
+const _getResponseData = (res) => {
+  if (!res.ok) {
+    return Promise.reject(`Ошибка: ${res.status}`);;
+  }
+
+  return res.json();
 }
 
-const getCards = () => {
-  return fetch(`${config.baseUrl}/cards`, {
+const getUser = fetch(`${config.baseUrl}/users/me`, {
     headers: {
       authorization: config.token
     }
   })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Не удалось загрузить посты: ${res.status}`);
-    })
-}
+    .then(_getResponseData);
+
+
+const getCards = fetch(`${config.baseUrl}/cards`, {
+    headers: {
+      authorization: config.token
+    }
+  })
+    .then(_getResponseData);
 
 const updateProfile = (nameInput, aboutInput) => {
   return fetch(`${config.baseUrl}/users/me`, {
@@ -43,6 +38,7 @@ const updateProfile = (nameInput, aboutInput) => {
       about: aboutInput.value
     })
   })
+    .then(_getResponseData);
 }
 
 const postCard = (nameInput, urlInput) => {
@@ -57,6 +53,7 @@ const postCard = (nameInput, urlInput) => {
       link: urlInput.value
     })
   })
+    .then(_getResponseData);
 }
 
 const deleteCard = (cardId) => {
@@ -66,6 +63,7 @@ const deleteCard = (cardId) => {
       authorization: config.token,
     }
   })
+    .then(_getResponseData);
 }
 
 const likeOrDislike = (method, cardId) => {
@@ -75,6 +73,7 @@ const likeOrDislike = (method, cardId) => {
       authorization: config.token,
     }
   })
+    .then(_getResponseData);
 }
 
 const updateAvatar = (urlInput) => {
@@ -88,6 +87,7 @@ const updateAvatar = (urlInput) => {
       avatar: urlInput.value
     }))
   })
+    .then(_getResponseData);
 }
 
 export {getUser, getCards, updateProfile, postCard, deleteCard, likeOrDislike, updateAvatar};

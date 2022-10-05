@@ -1,10 +1,6 @@
 import {openModal, closeModal} from "./modal";
 import {clearValidation} from "./validate";
-import {getUser, updateAvatar, updateProfile} from "./api";
-
-// ======================
-// Редактирование профиля и аватара
-// ======================
+import {updateAvatar, updateProfile} from "./api";
 
 const profileAvatar = document.querySelector('.profile__avatar-image');
 const profileName = document.querySelector('.profile__name');
@@ -23,23 +19,10 @@ const formEditAvatar = modalEditAvatar.querySelector('.form');
 const avatarInput = formEditAvatar.querySelector('input[name="avatar-img-link"]');
 const buttonSubmitAvatarEditing = formEditAvatar.querySelector('.form__submit');
 
-let userId;
-
-const fillUserProfile = (data) => {
-  profileAvatar.src = data.avatar;
-  profileName.textContent = data.name;
-  profileAbout.textContent = data.about;
-}
-
-const renderProfile = () => {
-  getUser()
-    .then((res) => {
-      fillUserProfile(res);
-      userId = res['_id'];
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+const fillProfile = (profileData) => {
+  profileAvatar.src = profileData.avatar;
+  profileName.textContent = profileData.name;
+  profileAbout.textContent = profileData.about;
 }
 
 const fillEditModalInputs = () => {
@@ -55,21 +38,15 @@ const onEditFormSubmit = (evt) => {
 
   updateProfile(formEditProfile.elements.name, formEditProfile.elements.about)
     .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Не удалось обновить данные пользователя: ${res.status}`);
-    })
-    .then((result) => {
-      fillUserProfile(result);
+      fillProfile(res);
       closeModal(modalEditProfile);
     })
     .catch((err) => {
       console.log(err);
+      buttonSubmitProfileEditing.disabled = false;
     })
     .finally(() => {
       buttonSubmitProfileEditing.textContent = buttonText;
-      buttonSubmitProfileEditing.disabled = false;
     });
 }
 
@@ -81,22 +58,16 @@ const onEditAvatarSubmit = (evt) => {
 
   updateAvatar(avatarInput)
     .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Не удалось обновить аватар: ${res.status}`);
-    })
-    .then((res) => {
       profileAvatar.src = res.avatar;
       formEditAvatar.reset();
       closeModal(modalEditAvatar);
     })
     .catch((err) => {
       console.log(err);
+      buttonSubmitAvatarEditing.disabled = false;
     })
     .finally(() => {
       buttonSubmitAvatarEditing.textContent = buttonText;
-      buttonSubmitAvatarEditing.disabled = false;
     });
 }
 
@@ -117,4 +88,4 @@ const enableProfileEditing = () => {
   })
 }
 
-export {renderProfile, enableProfileEditing, fillUserProfile, userId};
+export {enableProfileEditing, fillProfile};
